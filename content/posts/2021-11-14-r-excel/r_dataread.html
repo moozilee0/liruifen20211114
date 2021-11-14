@@ -11,12 +11,13 @@ featured_image: null
 
 
 
-<p>@<a href="使用R导入excel数据">TOC</a></p>
 <div id="前言" class="section level1">
 <h1>前言</h1>
-<p>临床上为了方便很多时候大家会使用excel进行数据的存储，使用R对其进行分析，需要将数据导入到R之中，但是R语言目前并不支持直接读入excel数据，本文将为大家介绍多种把excel数据导入R的方法。
-# Excel转换格式
-虽然R语言不能直接读取Excel的数据，但是可以直接读取csv格式的数据，把excel格式数据保存为csv格式数据，就可通过<code>read.csv（）</code>函数进行数据读取。下面展示了R语言官方<code>read.csv</code>函数的参数（详细内容可在R Studio控制台输入<code>?read.csv</code>进行查看：</p>
+<p>临床上为了方便很多时候大家会使用excel进行数据的存储，使用R对其进行分析，需要将数据导入到R之中，但是R语言目前并不支持直接读入excel数据，本文将为大家介绍多种把excel数据导入R的方法。</p>
+</div>
+<div id="excel转换格式" class="section level1">
+<h1>Excel转换格式</h1>
+<p>虽然R语言不能直接读取Excel的数据，但是可以直接读取csv格式的数据，把excel格式数据保存为csv格式数据，就可通过<code>read.csv（）</code>函数进行数据读取。下面展示了R语言官方<code>read.csv</code>函数的参数（详细内容可在R Studio控制台输入<code>?read.csv</code>进行查看：</p>
 <pre class="r"><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;,
          dec = &quot;.&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)</code></pre>
 </div>

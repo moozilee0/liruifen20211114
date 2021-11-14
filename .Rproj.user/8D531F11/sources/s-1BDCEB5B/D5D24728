@@ -3,22 +3,22 @@
     "path": "D:/Program install/R/blogR/liruifen20211114/config.yaml",
     "project_path": "config.yaml",
     "type": "yaml",
-    "hash": "3831961695",
+    "hash": "3479797451",
     "contents": "",
     "dirty": false,
     "created": 1636892590559.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
-        "cursorPosition": "99,14",
-        "scrollLine": "82"
+        "cursorPosition": "80,18",
+        "scrollLine": "67"
     },
     "folds": "",
-    "lastKnownWriteTime": 1636894465,
+    "lastKnownWriteTime": 1636895321,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1636894465792,
+    "last_content_update": 1636895321946,
     "read_only": false,
     "read_only_alternatives": []
 }

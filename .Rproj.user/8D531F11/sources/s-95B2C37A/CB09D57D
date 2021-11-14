@@ -3,22 +3,22 @@
     "path": "D:/Program install/R/blogR/liruifen20211114/content/posts/2021-11-14-r-excel/r_dataread.Rmd",
     "project_path": "content/posts/2021-11-14-r-excel/r_dataread.Rmd",
     "type": "r_markdown",
-    "hash": "2754517953",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1636896882020.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "7,14",
+        "cursorPosition": "6,8",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1636897047,
+    "lastKnownWriteTime": 1636897167,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1636897047105,
+    "last_content_update": 1636897167456,
     "read_only": false,
     "read_only_alternatives": []
 }

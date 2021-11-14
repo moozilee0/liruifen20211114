@@ -1,0 +1,72 @@
+---
+title: "R导入excel数据"
+author: "ruifen"
+date: '2021-11-14'
+slug: []
+categories: R
+tags: R Markdown
+description: null
+featured_image: null
+---
+
+
+
+<p>@<a href="使用R导入excel数据">TOC</a></p>
+<div id="前言" class="section level1">
+<h1>前言</h1>
+<p>临床上为了方便很多时候大家会使用excel进行数据的存储，使用R对其进行分析，需要将数据导入到R之中，但是R语言目前并不支持直接读入excel数据，本文将为大家介绍多种把excel数据导入R的方法。
+# Excel转换格式
+虽然R语言不能直接读取Excel的数据，但是可以直接读取csv格式的数据，把excel格式数据保存为csv格式数据，就可通过<code>read.csv（）</code>函数进行数据读取。下面展示了R语言官方<code>read.csv</code>函数的参数（详细内容可在R Studio控制台输入<code>?read.csv</code>进行查看：</p>
+<pre class="r"><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;,
+         dec = &quot;.&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)</code></pre>
+</div>
+<div id="使用r语言中的包" class="section level1">
+<h1>使用R语言中的包</h1>
+<p>虽然R语言目前并不支持直接读入excel数据，但是能够读写excel的包是多种多样的。
+## readxl包读取excel数据</p>
+<p>下框展示了<code>readxl</code>包读取excel相关函数参数，在控制台中输入<code>??read_excel</code>查看相关函数及其描述</p>
+<pre class="r"><code>read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
+  col_types = NULL, na = &quot;&quot;, trim_ws = TRUE, skip = 0,
+  n_max = Inf, guess_max = min(1000, n_max),
+  progress = readxl_progress(), .name_repair = &quot;unique&quot;)
+
+read_xls(path, sheet = NULL, range = NULL, col_names = TRUE,
+  col_types = NULL, na = &quot;&quot;, trim_ws = TRUE, skip = 0,
+  n_max = Inf, guess_max = min(1000, n_max),
+  progress = readxl_progress(), .name_repair = &quot;unique&quot;)
+
+read_xlsx(path, sheet = NULL, range = NULL, col_names = TRUE,
+  col_types = NULL, na = &quot;&quot;, trim_ws = TRUE, skip = 0,
+  n_max = Inf, guess_max = min(1000, n_max),
+  progress = readxl_progress(), .name_repair = &quot;unique&quot;)
+</code></pre>
+<div id="openxlsx包读取excel数据" class="section level2">
+<h2>openxlsx包读取excel数据</h2>
+<p><code>openxlsx</code>包不仅能够进行excel表格数据的读入，也能进行excel表格的填写。下面展示R帮助中给出的该函数的参数：</p>
+<pre class="r"><code># example
+df1 &lt;- read.xlsx(xlsxFile = xlsxFile, sheet = 1, 
+                 skipEmptyRows = FALSE)</code></pre>
+</div>
+<div id="ofiicer包读取excel数据" class="section level2">
+<h2>ofiicer包读取excel数据</h2>
+<pre class="r"><code>read_xlsx(path = NULL)
+# example
+read_xlsx()
+x &lt;- read_xlsx()
+print(x, target = tempfile(fileext = &quot;.xlsx&quot;))
+</code></pre>
+</div>
+<div id="xlsx包读取excel数据" class="section level2">
+<h2>xlsx包读取excel数据</h2>
+<pre class="r"><code>file &lt;- system.file(&quot;tests&quot;, &quot;test_import.xlsx&quot;, package = &quot;xlsx&quot;)
+res &lt;- read.xlsx(file, 1)  # read first sheet
+head(res)
+#          NA. Population Income Illiteracy Life.Exp Murder HS.Grad Frost   Area
+# 1    Alabama       3615   3624        2.1    69.05   15.1    41.3    20  50708
+# 2     Alaska        365   6315        1.5    69.31   11.3    66.7   152 566432
+# 3    Arizona       2212   4530        1.8    70.55    7.8    58.1    15 113417
+# 4   Arkansas       2110   3378        1.9    70.66   10.1    39.9    65  51945
+# 5 California      21198   5114        1.1    71.71   10.3    62.6    20 156361
+# 6   Colorado       2541   4884        0.7    72.06    6.8    63.9   166 103766</code></pre>
+</div>
+</div>

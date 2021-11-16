@@ -1,0 +1,242 @@
+---
+title: R|数据整理笔记
+author: 李瑞芬
+date: '2021-11-16'
+slug: []
+categories: []
+tags: []
+description: ~
+featured_image: ~
+---
+
+
+
+## 数据整理
+
+- 分气候带将数据进行拆分，年份，月份应该分开，年份重复，月份不重复。
+
+- 读取数据，先把每行数据按照3年12个月进行重复（36次）。
+
+- 完成后将年份，月份按列追加。逐年填补人口数，追加完毕使用数据透视表填补发病数（五年合并发病数）。
+
+
+
+```{r include = FALSE}
+
+library(openxlsx)
+
+library(readxl)
+
+
+```
+
+
+- 各地区（88行）人口数使用五年合并的总人口数将三个表格合并，重复12次，添加时间变量。（分气象带人口数据5年合并.xlsx）
+
+
+```{r eval=FALSE}
+
+data37 <- readxl::read_xlsx("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/气候带5年合并发病率.xlsx",sheet = 1)
+
+dat37 <- data37[rep(1:nrow(data37),each=36),]
+
+
+a <- data.frame(
+  year = c(1,2,3)
+)
+
+a <- a[rep(1:nrow(a),each = 12),]
+
+a <- as.data.frame(a)
+
+a <- a[rep(1:nrow(a),times = 88),]
+
+
+dat37 <- cbind(dat37,a)
+
+b <- data.frame(month = c(1,2,3,4,5,6,7,8,9,10,11,12))
+
+b <- b[rep(1:nrow(b),times = 264),]
+
+b <- as.data.frame(b)
+
+dat37 <- cbind(dat37,b)
+
+write.xlsx(dat37,"时间合并地区编码37.xlsx")
+
+## 气候带38
+
+
+data38 <- readxl::read_xlsx("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/气候带5年合并发病率.xlsx",sheet = 2)
+
+dat38 <- data38[rep(1:nrow(data38),each=36),]
+
+
+a <- data.frame(
+  year = c(1,2,3)
+)
+
+a <- a[rep(1:nrow(a),each = 12),]
+
+a <- as.data.frame(a)
+
+# a有36行
+
+a38 <- a[rep(1:nrow(a),times = 126),]
+
+
+dat38 <- cbind(dat38,a38)
+
+b <- data.frame(month = c(1,2,3,4,5,6,7,8,9,10,11,12))
+
+b38 <- b[rep(1:nrow(b),times = 378),]
+
+b38 <- as.data.frame(b38)
+
+dat38 <- cbind(dat38,b38)
+
+write.xlsx(dat38,"D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并地区编码38.xlsx")
+
+
+
+## 气候带49
+
+data49 <- readxl::read_xlsx("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/气候带5年合并发病率.xlsx",sheet = 3)
+
+dat49 <- data49[rep(1:nrow(data49),each=36),]
+
+
+a49 <- a[rep(1:nrow(a),times = 80),]
+
+dat49 <- cbind(dat49,a49)
+
+b49 <- b[rep(1:nrow(b),times = 240),]
+
+b49 <- as.data.frame(b49, colnames = TRUE)
+
+dat49 <- cbind(dat49,b49)
+
+write.xlsx(dat49,"D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并地区编码49.xlsx")
+
+
+## 气候带50
+
+data50 <- readxl::read_xlsx("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/气候带5年合并发病率.xlsx",sheet = 4)
+
+dat50 <- data50[rep(1:nrow(data50),each=36),]
+
+
+a50 <- a[rep(1:nrow(a),times = 531),]
+
+dat50 <- cbind(dat50,a50)
+
+b50 <- b[rep(1:nrow(b),times = 1593),]
+
+b50 <- as.data.frame(b50, colnames = TRUE)
+
+dat50 <- cbind(dat50,b50)
+
+dat50 <- cbind(dat50,a50)
+
+write.xlsx(dat50,"D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并地区编码50.xlsx")
+```
+
+# 读取分年度人口数据
+
+- 读取分气象带5年合并人口数据，重复月份数量（12次）即可得到分年度月份匹配的数据。
+
+- 在时间合并地区编码.xlsx后追加人口数据
+
+```{r eval=FALSE}
+
+po37 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/分气象带人口数据5年合并.xlsx",sheet = 1)
+
+po37 <- po37[rep(1:nrow(po37), each = 12),]
+
+write.xlsx(po37, "时间合并人口数据37.xlsx")
+
+## 气象带38
+
+po38 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/分气象带人口数据5年合并.xlsx",sheet = 2)
+
+po38 <- po38[rep(1:nrow(po38), each = 12),]
+
+write.xlsx(po38, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并人口数据38.xlsx")
+
+## 气象带49
+
+po49 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/分气象带人口数据5年合并.xlsx",sheet = 3)
+
+po49 <- po49[rep(1:nrow(po49), each = 12),]
+
+write.xlsx(po49, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并人口数据49.xlsx")
+
+
+## 气象带50
+
+po50 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/1104数据整理/分气象带人口数据5年合并.xlsx",sheet = 4)
+
+po50<- po50[rep(1:nrow(po50), each = 12),]
+
+write.xlsx(po50, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/时间合并人口数据50.xlsx")
+
+```
+
+# 生成该气象带编码序列
+
+```{r eval = FALSE}
+
+code37 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/地区编码-CODE-FID.xlsx", sheet = 1 )
+
+code37 <- code37[rep(1:nrow(code37),each = 12),]
+
+code37 <- code37[rep(1:nrow(code37),times = 3),]
+
+write.xlsx(code37, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/匹配气候带37数据用编码3168.xlsx")
+
+# 气象带38
+
+code38 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/地区编码-CODE-FID.xlsx", sheet = 2 )
+
+code38 <- code38[rep(1:nrow(code38),each = 12),]
+
+code38 <- code38[rep(1:nrow(code38),times = 3),]
+
+write.xlsx(code38, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/匹配气候带38数据用编码.xlsx")
+
+# 气象带49
+
+code49 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/地区编码-CODE-FID.xlsx", sheet = 3 )
+
+code49 <- code49[rep(1:nrow(code49),each = 12),]
+
+code49 <- code49[rep(1:nrow(code49),times = 3),]
+
+write.xlsx(code49, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/匹配气候带49数据用编码.xlsx")
+
+# 气象带50
+
+code50 <- read_excel("D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/地区编码-CODE-FID.xlsx", sheet = 4 )
+
+code50 <- code50[rep(1:nrow(code50),each = 12),]
+
+code50 <- code50[rep(1:nrow(code50),times = 3),]
+
+write.xlsx(code50, "D:/2020研究生/A-时间空间流行病学分析/版本稿件/投稿/乙脑数据王老师211104/20211115数据整理/匹配气候带50数据用编码.xlsx")
+
+```
+
+## 完成气象带数据与气候编码匹配
+
+- 在excel中完成编码与气候带数据匹配
+
+- 气候数据路径："D:\2020研究生\A-时间空间流行病学分析\版本稿件\投稿\乙脑数据王老师211104\20211115数据整理\1104气候数据整理.xlsx”
+
+- 生成的编码路径："D:\2020研究生\A-时间空间流行病学分析\版本稿件\投稿\乙脑数据王老师211104\20211115数据整理"
+
+
+
+## 完成人口数据与气候带，气候编码数据匹配
+
+- 在excel中进行FID排序之后合并即可。
+

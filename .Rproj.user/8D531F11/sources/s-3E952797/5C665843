@@ -3,22 +3,22 @@
     "path": "D:/Program install/R/blogR/liruifen20211114/content/posts/2021-11-16-r/datacleaning.Rmd",
     "project_path": "content/posts/2021-11-16-r/datacleaning.Rmd",
     "type": "r_markdown",
-    "hash": "3293715067",
+    "hash": "1914560363",
     "contents": "",
     "dirty": false,
     "created": 1637068150683.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "233,0",
-        "scrollLine": "226"
+        "cursorPosition": "244,0",
+        "scrollLine": "227"
     },
     "folds": "",
-    "lastKnownWriteTime": 1637143952,
+    "lastKnownWriteTime": 1637144277,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1637143952846,
+    "last_content_update": 1637144277367,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -1,5 +1,5 @@
 ---
-title: 系统综述简介
+title: 系统综述
 author: 木子李
 date: '2022-03-07'
 slug: []
